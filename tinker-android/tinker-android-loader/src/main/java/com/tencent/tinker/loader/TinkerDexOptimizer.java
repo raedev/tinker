@@ -556,7 +556,7 @@ public final class TinkerDexOptimizer {
     private static boolean waitUntilFileGeneratedOrTimeout(Context context, String filePath, Long... timeOutSeq) {
         final File file = new File(filePath);
         final Long[] delaySeq = (timeOutSeq != null && timeOutSeq.length > 0)
-                ? timeOutSeq : new Long[] {1000L, 2000L, 4000L, 8000L, 16000L, 32000L};
+                ? timeOutSeq : new Long[]{1000L, 2000L, 3000L, 4000L};
         int delaySeqIdx = 0;
         while (!SharePatchFileUtil.isLegalFile(file) && delaySeqIdx < delaySeq.length) {
             SystemClock.sleep(delaySeq[delaySeqIdx++]);
