@@ -85,6 +85,12 @@ public class PatchInfoGen {
         for (String key : config.mPackageFields.keySet()) {
             newProperties.put(key, config.mPackageFields.get(key));
         }
+        // put app package info to meta
+        AndroidParser parser = AndroidParser.getAndroidManifest(config.mNewApkFile);
+        newProperties.put("packageName", parser.apkMeta.getPackageName());
+        newProperties.put("appVersionName", parser.apkMeta.getVersionName());
+        newProperties.put("appVersionCode", String.valueOf(parser.apkMeta.getVersionCode()));
+        newProperties.put("appLabel", parser.apkMeta.getLabel());
 
         String comment = "base package config field";
         OutputStream os = null;
